@@ -61,6 +61,51 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function(movements)
+{
+  containerMovements.innerHTML = '';
+  
+  movements.forEach(function(mov, i,)
+  {
+    const type = mov > 0 ? 'deposit' : 'withdrawal'; 
+    
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__value">${mov}</div>
+      </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+}
+
+displayMovements(account1.movements);
+
+const calcDisplayBalance = function(movements)
+{
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+}
+
+calcDisplayBalance(account1.movements);
+
+const createdUserNames = function(accs)
+{
+  accs.forEach(function(acc)
+  {
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+  });
+};
+
+createdUserNames(accounts);
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -85,20 +130,21 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //     console.log(`Movement ${i + 1} You withdrew ${Math.abs(mov)}`);
 // })
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-currencies.forEach(function(value, key, map)
-{
-  console.log(`${key}:  ${value}`);
-});
+// currencies.forEach(function(value, key, map)
+// {
+//   console.log(`${key}:  ${value}`);
+// });
 
-const currenciesSet = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR']);
+// const currenciesSet = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR']);
 
-currenciesSet.forEach(function(value, key, set)
-{
-  console.log(`${key}: ${value}`);
-});
+// currenciesSet.forEach(function(value, key, set)
+// {
+//   console.log(`${key}: ${value}`);
+// });
+
