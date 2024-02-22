@@ -87,27 +87,25 @@ const calcDisplayBalance = function(movements)
   labelBalance.textContent = `${balance}€`;
 }
 
-const calcDisplaySummary = function(movements)
+const calcDisplaySummary = function(acc)
 {
-  const income = movements
+  const income = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
     labelSumIn.textContent = `${income}€`;
   
-  const out = movements
+  const out = acc.movements
   .filter(mov => mov < 0)
   .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(deposit => deposit > 0)
-    .map(deposit => deposit * 1.2 / 100)
+    .map(deposit => deposit * acc.interestRate/ 100)
     .filter((int, i, arr) => int >= 1)
     .reduce((acc, int) => acc + int, 0);
     labelSumInterest.textContent = `${interest}€`;
 }
-
-calcDisplaySummary(account1.movements);
 
 const createdUserNames = function(accs)
 {
@@ -138,6 +136,10 @@ btnLogin.addEventListener('click', function(e)
     labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
 
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
     // display movements
     displayMovements(currentAccount.movements);
 
@@ -145,48 +147,9 @@ btnLogin.addEventListener('click', function(e)
     calcDisplayBalance(currentAccount.movements);
 
     // display summary
+    calcDisplaySummary(currentAccount);
   }
 });
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-// for (const [i, mov] of movements.entries())
-// {
-//   if (mov > 0)
-//     console.log(`Movement ${i + 1} You deposited ${mov}`);
-//   else
-//     console.log(`Movement ${i + 1} You withdrew ${Math.abs(mov)}`);
-// }
-
-// console.log(`---- FOR EACH ----`)
-
-// movements.forEach(function(mov, i, arr)
-// {
-//   if (mov > 0)
-//     console.log(`Movement ${i + 1} You deposited ${mov}`);
-//   else
-//     console.log(`Movement ${i + 1} You withdrew ${Math.abs(mov)}`);
-// })
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// currencies.forEach(function(value, key, map)
-// {
-//   console.log(`${key}:  ${value}`);
-// });
-
-// const currenciesSet = new Set(['USD', 'GBP', 'EUR', 'USD', 'EUR']);
-
-// currenciesSet.forEach(function(value, key, set)
-// {
-//   console.log(`${key}: ${value}`);
-// });
 
