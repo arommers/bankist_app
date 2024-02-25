@@ -10,7 +10,7 @@
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'Adri Rommers',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
@@ -30,7 +30,7 @@ const account1 = {
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Link Rommers',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
@@ -190,13 +190,39 @@ const updateUI = function(acc)
   calcDisplaySummary(acc);
 }
 
-let currentAccount;
+const startLogOutTimer = function()
+{
+  const tick = function()
+  {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0)
+    {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
+    time--;
+  }
+  
+  let time = 30;
+  // call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+
+  // In each call, print the remaining time to UI
+};
+
+let currentAccount, timer;
 
 // ======================== FAKE ALWAYS LOGGED IN ========================
 
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // =======================================================================
 
@@ -208,7 +234,6 @@ btnLogin.addEventListener('click', function(e)
   e.preventDefault();
   
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
-  console.log(currentAccount);
   if (currentAccount?.pin === +(inputLoginPin.value))
   {
     // display ui and welcome message
@@ -242,6 +267,10 @@ btnLogin.addEventListener('click', function(e)
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    if(timer) clearInterval(timer);
+
+    timer = startLogOutTimer();
+
     updateUI(currentAccount);
   }
 });
@@ -265,6 +294,10 @@ btnTransfer.addEventListener('click', function(e)
     receiver.movementsDates.push(new Date().toISOString());
 
     updateUI(currentAccount);
+
+    // reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
   inputTransferAmount.blur();
 });
@@ -277,12 +310,21 @@ btnLoan.addEventListener('click', function(e)
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1))
   {
-    // add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(function()
+    {
 
-    updateUI(currentAccount);
-    inputLoanAmount.blur();
+      
+      // add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      
+      updateUI(currentAccount);
+
+      clearInterval(timer);
+      timer = startLogOutTimer();
+
+      inputLoanAmount.blur();
+    }, 2500)
   }
   inputLoanAmount.value = '';
 })
