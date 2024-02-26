@@ -22,3 +22,16 @@ It allows users to log in, view their account balance, check their transaction h
 - Request Loan: Request a loan with automatic verification and processing.
 - Close Account: Close the account with simple confirmation steps.
 - Responsive Design: The application is designed to be fully responsive and works seamlessly across devices.
+
+### Key concepts
+
+These are some of the key JavaScript concepts demonstrated in the Bankist app, showcasing my ongoing journey of understanding and implementing Javascript utilities.
+- **DOM Manipulation:**  
+  Interacting with the Document Object Model (DOM) to dynamically update the content and styling of HTML elements based on user actions or application logic.
+  For example, updating our account balances, transaction history, and user interface elements like buttons and forms.
+- **Event Handling:**  
+  Listening for user interactions such as clicks, form submissions, and keypresses. JavaScript event listeners are attached to HTML elements to trigger specific actions or functions when these events occur.
+  For instance, logging in, transferring money, requesting a loan, and sorting transaction history.
+- **Array Methods:**  
+  We've used array methods like forEach, filter, map, and reduce extensively to manipulate and iterate over arrays of account data.
+  These methods allow for calculating account balances, summarizing transaction data, and filtering transactions based on specific criteria.
