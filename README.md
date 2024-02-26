@@ -1,5 +1,5 @@
 ## Bankist
-Bankist App is a simulated banking transaction application developed to showcase various JavaScript functionalities and techniques.  
+The Bankist App is a simulated banking transaction application developed to showcase various JavaScript functionalities and techniques.  
 It allows users to log in, view their account balance, check their transaction history, transfer money to other accounts, request a loan, and close their account.  
 
 ---
