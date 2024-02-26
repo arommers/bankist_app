@@ -9,7 +9,16 @@ It allows users to log in, view their account balance, check their transaction h
 ---
 
 ### Getting Started
-- Clone the repository and open the index.html file in your preferred web browser.
-`git clone https://github.com/your-username/bankist-app.git`
-- Use the following credentials for logging in: Username: 'ar', PIN: '1111'
+- Clone the repository and open the index.html file in your preferred web browser.  
+  `git clone https://github.com/your-username/bankist-app.git`
+- Use the following credentials for logging in: `Username: 'ar', PIN: '1111'`
 - Try out the features of the application and enjoy!
+
+### Features
+- User Authentication: Users can log in with their username and PIN.
+- Account Overview: Display of current account balance and transaction history.
+- Transaction History: View detailed transaction history with deposit and withdrawal information.
+- Transfer Money: Transfer money to other accounts with real-time updates.
+- Request Loan: Request a loan with automatic verification and processing.
+- Close Account: Close the account with simple confirmation steps.
+- Responsive Design: The application is designed to be fully responsive and works seamlessly across devices.
