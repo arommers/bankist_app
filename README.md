@@ -38,7 +38,9 @@ These are some of the key JavaScript concepts demonstrated in the Bankist app, s
 - **Date Manipulation:**  
   The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object is utilized to handle dates and times, particularly in formatting and displaying transaction dates.
   The Intl.DateTimeFormat object is used to format dates according to the user's locale, providing a customized experience based on regional preferences.
-  
+
+---
+
 ### Sources
 - [MDN Web Docs](https://developer.mozilla.org/en-US/)
 - [Course Material](https://github.com/jonasschmedtmann/complete-javascript-course)
