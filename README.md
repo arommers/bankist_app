@@ -35,7 +35,7 @@ These are some of the key JavaScript concepts demonstrated in the Bankist app, s
 - **Array Methods:**  
   We've used array methods like forEach, filter, map, and reduce extensively to manipulate and iterate over arrays of account data.
   These methods allow for calculating account balances, summarizing transaction data, and filtering transactions based on specific criteria.
-- **Date Manipulation**  
+- **Date Manipulation:**  
   The [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object is utilized to handle dates and times, particularly in formatting and displaying transaction dates.
   The Intl.DateTimeFormat object is used to format dates according to the user's locale, providing a customized experience based on regional preferences.
   
